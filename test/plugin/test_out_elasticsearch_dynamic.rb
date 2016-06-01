@@ -247,7 +247,7 @@ class ElasticsearchOutputDynamic < Test::Unit::TestCase
     logstash_index = "logstash-#{time.getutc.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -259,7 +259,7 @@ class ElasticsearchOutputDynamic < Test::Unit::TestCase
     utc_index = "logstash-#{time.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(utc_index, index_cmds.first['index']['_index'])
   end
@@ -271,7 +271,7 @@ class ElasticsearchOutputDynamic < Test::Unit::TestCase
     logstash_index = "myprefix-#{time.getutc.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -283,7 +283,7 @@ class ElasticsearchOutputDynamic < Test::Unit::TestCase
     logstash_index = "myprefix-#{time.getutc.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -295,7 +295,7 @@ class ElasticsearchOutputDynamic < Test::Unit::TestCase
     logstash_index = "logstash-#{time.getutc.strftime("%Y.%m")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -308,7 +308,7 @@ class ElasticsearchOutputDynamic < Test::Unit::TestCase
     logstash_index = "myprefix-#{time.getutc.strftime("%Y.%m")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end

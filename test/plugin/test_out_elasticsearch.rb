@@ -185,7 +185,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     time = Time.parse Date.today.to_s
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record.merge('@target_index' => 'local-override'), time)
+    driver.emit(sample_record.merge('@target_index' => 'local-override'), time.to_i)
     driver.run
     assert_equal('local-override', index_cmds.first['index']['_index'])
   end
@@ -196,7 +196,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     time = Time.parse Date.today.to_s
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record.merge('@target_index' => 'Local-Override'), time)
+    driver.emit(sample_record.merge('@target_index' => 'Local-Override'), time.to_i)
     driver.run
 	# Allthough @target_index has upper-case characters,
 	# it should be set as lower-case when sent to elasticsearch.
@@ -219,7 +219,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     logstash_index = "logstash-#{time.getutc.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -373,7 +373,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     logstash_index = "logstash-2015.05.31"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, dt.to_time)
+    driver.emit(sample_record, dt.to_time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -387,7 +387,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     index = "logstash-#{time.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(index, index_cmds.first['index']['_index'])
   end
@@ -399,7 +399,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     logstash_index = "myprefix-#{time.getutc.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -411,7 +411,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     logstash_index = "myprefix-#{time.getutc.strftime("%Y.%m.%d")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
 	# Allthough logstash_prefix has upper-case characters,
 	# it should be set as lower-case when sent to elasticsearch.
@@ -425,7 +425,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     logstash_index = "logstash-#{time.getutc.strftime("%Y.%m")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
@@ -438,7 +438,7 @@ class ElasticsearchOutput < Test::Unit::TestCase
     logstash_index = "myprefix-#{time.getutc.strftime("%Y.%m")}"
     stub_elastic_ping
     stub_elastic
-    driver.emit(sample_record, time)
+    driver.emit(sample_record, time.to_i)
     driver.run
     assert_equal(logstash_index, index_cmds.first['index']['_index'])
   end
